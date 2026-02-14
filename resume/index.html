@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en" class="hardware-theme">
+  <head>
+    <meta charset="UTF-8">
+    <title>Marco Adkins - Developer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Marco Adkins - Software Engineer Portfolio">
+    
+    
+
+    <link rel="stylesheet" href="/assets/application-11d2cb87.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-684943e5.js",
+    "controllers": "/assets/controllers/index-f2ef63e3.js",
+    "controllers/markdown_preview_controller": "/assets/controllers/markdown_preview_controller-39df210f.js",
+    "controllers/code_copy_controller": "/assets/controllers/code_copy_controller-335a343a.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-86bf8853.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-7ea3d58b.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-25917588.js"
+  }
+}</script>
+<link rel="modulepreload" href="/assets/application-684943e5.js">
+<link rel="modulepreload" href="/assets/controllers/index-f2ef63e3.js">
+<link rel="modulepreload" href="/assets/controllers/markdown_preview_controller-39df210f.js">
+<link rel="modulepreload" href="/assets/controllers/code_copy_controller-335a343a.js">
+<link rel="modulepreload" href="/assets/turbo.min-86bf8853.js">
+<link rel="modulepreload" href="/assets/stimulus.min-7ea3d58b.js">
+<link rel="modulepreload" href="/assets/stimulus-loading-25917588.js">
+<script type="module">import "application"</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --space-void: #0a0a0f;
+        --space-deep: #0f0f1a;
+        --space-dark: #14141f;
+        --space-mid: #1a1a2e;
+
+        --text-bright: #ffffff;
+        --text-primary: #e8e9f0;
+        --text-secondary: #b8b9c5;
+        --text-tertiary: #8a8b98;
+
+        --nebula-purple: #9d4edd;
+        --nebula-blue: #3a86ff;
+        --nebula-pink: #ff006e;
+        --nebula-cyan: #06ffa5;
+
+        --star-white: #f0f0ff;
+        --star-blue: #adc5ff;
+        --star-gold: #ffd60a;
+
+        --planet-orange: #ff9e00;
+        --planet-red: #ff4d6d;
+        --rocket-silver: #c8d5e8;
+
+        --border-faint: rgba(255, 255, 255, 0.05);
+        --border-subtle: rgba(255, 255, 255, 0.08);
+        --border-normal: rgba(255, 255, 255, 0.12);
+
+        --shadow-cosmic: 0 4px 20px rgba(157, 78, 221, 0.15);
+        --shadow-deep: 0 8px 32px rgba(0, 0, 0, 0.6);
+        --shadow-nebula: 0 0 40px rgba(157, 78, 221, 0.3);
+
+        --glow-purple: 0 0 30px rgba(157, 78, 221, 0.4);
+        --glow-blue: 0 0 30px rgba(58, 134, 255, 0.4);
+        --glow-pink: 0 0 30px rgba(255, 0, 110, 0.4);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+          color: aliceblue;
+      }
+
+      body {
+        font-family: 'Rajdhani', sans-serif;
+        background: var(--space-void);
+        color: var(--text-primary);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* Starfield background */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          radial-gradient(2px 2px at 20% 30%, white, transparent),
+          radial-gradient(2px 2px at 60% 70%, white, transparent),
+          radial-gradient(1px 1px at 50% 50%, white, transparent),
+          radial-gradient(1px 1px at 80% 10%, white, transparent),
+          radial-gradient(2px 2px at 90% 60%, white, transparent),
+          radial-gradient(1px 1px at 33% 80%, white, transparent),
+          radial-gradient(1px 1px at 15% 55%, white, transparent);
+        background-size: 200% 200%;
+        background-position: 0% 0%;
+        animation: twinkle 200s ease-in-out infinite;
+        opacity: 0.6;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 0.8; }
+      }
+
+      /* Nebula gradient overlay */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(ellipse at 10% 20%, rgba(157, 78, 221, 0.08), transparent 50%),
+          radial-gradient(ellipse at 80% 70%, rgba(58, 134, 255, 0.06), transparent 50%),
+          radial-gradient(ellipse at 50% 90%, rgba(255, 0, 110, 0.05), transparent 50%);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .main-container {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 32px 24px 100px;
+      }
+
+      /* Header - Space Station Command Center */
+      .header-panel {
+        background: linear-gradient(135deg, rgba(20, 20, 31, 0.8) 0%, rgba(26, 26, 46, 0.9) 100%);
+        border: 2px solid var(--border-normal);
+        border-radius: 16px;
+        padding: 48px 40px;
+        margin-bottom: 40px;
+        box-shadow: var(--shadow-deep), var(--shadow-nebula);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+      }
+
+      /* Orbital ring effect */
+      .header-panel::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--nebula-purple), var(--nebula-blue), var(--nebula-pink), var(--nebula-purple));
+        border-radius: 16px;
+        opacity: 0.3;
+        filter: blur(8px);
+        z-index: -1;
+        animation: orbit-glow 8s linear infinite;
+      }
+
+      @keyframes orbit-glow {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 0.5; }
+      }
+
+      @keyframes pulse-station {
+        0%, 100% { box-shadow:
+          0 0 15px var(--nebula-purple),
+          calc(100% - 10px) 0 0 0 var(--star-white),
+          0 calc(100% - 10px) 0 0 var(--star-white),
+          calc(100% - 10px) calc(100% - 10px) 0 0 var(--star-white),
+          calc(100% - 10px) 0 0 15px var(--nebula-blue),
+          0 calc(100% - 10px) 0 15px var(--nebula-pink),
+          calc(100% - 10px) calc(100% - 10px) 0 15px var(--nebula-cyan);
+        }
+        50% { box-shadow:
+          0 0 25px var(--nebula-purple),
+          calc(100% - 10px) 0 0 0 var(--star-white),
+          0 calc(100% - 10px) 0 0 var(--star-white),
+          calc(100% - 10px) calc(100% - 10px) 0 0 var(--star-white),
+          calc(100% - 10px) 0 0 25px var(--nebula-blue),
+          0 calc(100% - 10px) 0 25px var(--nebula-pink),
+          calc(100% - 10px) calc(100% - 10px) 0 25px var(--nebula-cyan);
+        }
+      }
+
+      .site-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--star-white) 0%, var(--nebula-purple) 30%, var(--nebula-blue) 70%, var(--nebula-cyan) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 12px;
+        margin-bottom: 12px;
+        position: relative;
+        filter: drop-shadow(0 0 30px rgba(157, 78, 221, 0.5));
+        animation: title-shimmer 6s ease-in-out infinite;
+      }
+
+      @keyframes title-shimmer {
+        0%, 100% { filter: drop-shadow(0 0 30px rgba(157, 78, 221, 0.5)); }
+        50% { filter: drop-shadow(0 0 40px rgba(58, 134, 255, 0.6)); }
+      }
+
+      .site-subtitle {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+      }
+
+      /* Navigation - Spacecraft Launch Bays */
+      .nav-panel {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+
+      .nav-button {
+        background: linear-gradient(180deg, rgba(26, 26, 46, 0.6) 0%, rgba(20, 20, 31, 0.8) 100%);
+        border: 1px solid var(--border-subtle);
+        border-radius: 12px;
+        padding: 14px 28px;
+        text-decoration: none;
+        color: var(--text-primary);
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+      }
+
+      /* Rocket trail effect */
+      .nav-button::before {
+        content: '';
+        position: absolute;
+        top: 2%;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg,
+          transparent 0%,
+          var(--nebula-purple) 25%,
+          var(--nebula-blue) 50%,
+          var(--nebula-cyan) 75%,
+          transparent 100%
+        );
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: all 0.6s ease;
+      }
+
+      .nav-button:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow:
+          0 8px 25px rgba(157, 78, 221, 0.3),
+          0 0 40px rgba(157, 78, 221, 0.2),
+          inset 0 0 20px rgba(157, 78, 221, 0.1);
+        border-color: var(--nebula-purple);
+        color: var(--star-white);
+        background: linear-gradient(180deg, rgba(157, 78, 221, 0.2) 0%, rgba(58, 134, 255, 0.15) 100%);
+      }
+
+      .nav-button:hover::before {
+        left: 0;
+        opacity: 1;
+      }
+
+      .nav-button:hover::after {
+        opacity: 1;
+        right: 8px;
+      }
+
+      /* Content area - Space Station Viewport */
+      .content-socket {
+        background: linear-gradient(135deg, rgba(20, 20, 31, 0.7) 0%, rgba(26, 26, 46, 0.8) 100%);
+        border: 1px solid var(--border-normal);
+        border-radius: 20px;
+        padding: 48px;
+        box-shadow: var(--shadow-deep), var(--shadow-cosmic);
+        position: relative;
+        backdrop-filter: blur(20px);
+      }
+
+      .content-socket::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 20%, rgba(157, 78, 221, 0.05), transparent 60%),
+                    radial-gradient(circle at 80% 80%, rgba(58, 134, 255, 0.03), transparent 50%);
+        pointer-events: none;
+        border-radius: 20px;
+      }
+
+      /* Constellation markers */
+      .screw {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--star-white);
+        box-shadow: 0 0 15px var(--nebula-purple);
+        animation: twinkle-marker 4s ease-in-out infinite;
+      }
+
+      @keyframes twinkle-marker {
+        0%, 100% {
+          opacity: 1;
+          box-shadow: 0 0 15px var(--nebula-purple);
+        }
+        25% {
+          opacity: 0.6;
+          box-shadow: 0 0 20px var(--nebula-blue);
+        }
+        50% {
+          opacity: 1;
+          box-shadow: 0 0 15px var(--nebula-pink);
+        }
+        75% {
+          opacity: 0.7;
+          box-shadow: 0 0 18px var(--nebula-cyan);
+        }
+      }
+
+      .screw-tl { top: 20px; left: 20px; }
+      .screw-tr { top: 20px; right: 20px; animation-delay: 1s; }
+      .screw-bl { bottom: 20px; left: 20px; animation-delay: 2s; }
+      .screw-br { bottom: 20px; right: 20px; animation-delay: 3s; }
+
+      /* System indicators - Nebula themed */
+      .led-indicator {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin: 0 6px;
+        animation: nebula-pulse 3s ease-in-out infinite;
+        position: relative;
+      }
+
+      .led-indicator::after {
+        content: '';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        border-radius: 50%;
+        opacity: 0.3;
+      }
+
+      .led-power {
+        background: var(--nebula-purple);
+        box-shadow: 0 0 12px var(--nebula-purple);
+      }
+
+      .led-power::after {
+        background: radial-gradient(circle, var(--nebula-purple), transparent);
+      }
+
+      .led-activity {
+        background: var(--nebula-blue);
+        box-shadow: 0 0 12px var(--nebula-blue);
+        animation-delay: 0.5s;
+      }
+
+      .led-activity::after {
+        background: radial-gradient(circle, var(--nebula-blue), transparent);
+      }
+
+      .led-storage {
+        background: var(--nebula-pink);
+        box-shadow: 0 0 12px var(--nebula-pink);
+        animation-delay: 1s;
+      }
+
+      .led-storage::after {
+        background: radial-gradient(circle, var(--nebula-pink), transparent);
+      }
+
+      @keyframes nebula-pulse {
+        0%, 100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.2);
+        }
+      }
+
+      /* Status bar - Mission Control */
+      .status-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.95);
+        border-top: 1px solid var(--border-normal);
+        padding: 12px 24px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(20px) saturate(180%);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5), 0 -1px 30px rgba(157, 78, 221, 0.1);
+      }
+
+      .status-indicators {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .status-indicators span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+      }
+
+      /* Flash message - Transmission received */
+      .flash {
+        background: linear-gradient(135deg, rgba(157, 78, 221, 0.15) 0%, rgba(58, 134, 255, 0.1) 100%);
+        border: 1px solid var(--nebula-purple);
+        border-left: 4px solid var(--nebula-purple);
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-bottom: 24px;
+        color: var(--star-white);
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 500;
+        box-shadow: 0 4px 20px rgba(157, 78, 221, 0.2), var(--glow-purple);
+        animation: transmission-in 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .flash::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        animation: scan 2s ease-in-out infinite;
+      }
+
+      @keyframes transmission-in {
+        from {
+          transform: translateX(-100%) scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes scan {
+        0% { left: -100%; }
+        100% { left: 100%; }
+      }
+
+      /* Responsive */
+      @keyframes responsive {
+        .site-title {
+          font-size: 2.25rem;
+          letter-spacing: 6px;
+        }
+
+        .nav-panel {
+          flex-direction: column;
+        }
+
+        .content-socket {
+          padding: 24px;
+        }
+
+        .header-panel {
+          padding: 32px 24px;
+        }
+
+        .status-bar {
+          flex-direction: column;
+          gap: 8px;
+          padding: 12px;
+        }
+
+        .status-indicators {
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main-container">
+      <header class="header-panel">
+        <div class="screw screw-tl"></div>
+        <div class="screw screw-tr"></div>
+        <div class="screw screw-bl"></div>
+        <div class="screw screw-br"></div>
+        <h1 class="site-title">MARCO.ADKINS</h1>
+        <p class="site-subtitle">Software Engineer</p>
+      </header>
+
+      <nav class="nav-panel">
+        <a class="nav-button" href="/">Home</a>
+        <a class="nav-button" href="/about/">About</a>
+        <a class="nav-button" href="/resume/">Resume</a>
+        <a class="nav-button" href="/workplace/">Workplace</a>
+        <a class="nav-button" href="/posts/">Blog</a>
+      </nav>
+
+
+
+      <main class="content-socket">
+        <div class="screw screw-tl"></div>
+        <div class="screw screw-tr"></div>
+        <div class="screw screw-bl"></div>
+        <div class="screw screw-br"></div>
+
+        <style>
+  .resume-section {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(20, 20, 31, 0.8) 100%);
+    border: 1px solid var(--border-normal);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 32px;
+    position: relative;
+    box-shadow: var(--shadow-deep), var(--shadow-cosmic);
+    backdrop-filter: blur(20px);
+  }
+
+  .resume-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.2px;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--nebula-purple), var(--nebula-blue), var(--nebula-pink));
+    border-radius: 16px 0 0 16px;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+  }
+
+  .job-entry {
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .job-entry:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .job-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .job-company {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--nebula-cyan);
+    margin-bottom: 6px;
+  }
+
+  .job-period {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+  }
+
+  .job-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .job-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .tech-tag {
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(58, 134, 255, 0.1));
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--nebula-cyan);
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .tech-tag:hover {
+    background: linear-gradient(135deg, rgba(157, 78, 221, 0.25), rgba(58, 134, 255, 0.2));
+    border-color: var(--nebula-purple);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--nebula-purple) 0%, var(--nebula-blue) 100%);
+    color: var(--star-white);
+    padding: 14px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+    margin-top: 20px;
+  }
+
+  .download-btn:hover {
+    box-shadow: 0 6px 25px rgba(157, 78, 221, 0.5), var(--glow-purple);
+    transform: translateY(-3px);
+  }
+</style>
+
+<div class="resume-section">
+  <h1 class="section-title">🚀 Mission Log</h1>
+  <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 20px;">
+    Full-stack developer with 11+ years navigating the cosmos of modern web applications and backend systems.
+  </p>
+  <a href="/resume.pdf" class="download-btn" download="marco-adkins.pdf">⬇ DOWNLOAD MISSION LOG</a>
+</div>
+
+<div class="resume-section">
+  <h2 class="section-title">🌟 Exploration History</h2>
+
+  <div class="job-entry">
+    <div class="job-title">Senior Software Developer</div>
+    <div class="job-company">Eezy LLC</div>
+    <div class="job-period">📅 2020 - Present</div>
+    <p class="job-description">
+      Lead development of enterprise-scale web applications serving millions of users across the galaxy.
+      Integrated multiple 3rd party systems with the core application, managed storage and processing of over 50 million assets,
+      built internal tooling to improve developer workflows, implemented CI/CD pipelines, and mentored junior space travelers.
+    </p>
+    <div class="job-tech">
+      <span class="tech-tag">Ruby on Rails</span>
+      <span class="tech-tag">JavaScript</span>
+      <span class="tech-tag">View Components</span>
+      <span class="tech-tag">PostgreSQL</span>
+      <span class="tech-tag">Mysql</span>
+      <span class="tech-tag">Sidekiq</span>
+      <span class="tech-tag">Redis</span>
+      <span class="tech-tag">AWS</span>
+      <span class="tech-tag">Docker</span>
+      <span class="tech-tag">GHA</span>
+    </div>
+  </div>
+
+  <div class="job-entry">
+    <div class="job-title">Software Developer</div>
+    <div class="job-company">Virtual Hold Technology</div>
+    <div class="job-period">📅 2015 - 2020</div>
+    <p class="job-description">
+      Built and deployed multiple customer-facing features for a SaaS callback platform orbiting the call center universe.
+      Co-Led design and development of a greenfield Rails application with React frontend to support transmission of user data and
+      enable a hybrid call center solution. Integrated a SaaS authentication provider to support single sign-on across multiple applications.
+      Maintained and optimized a legacy Ruby and C++ monolith serving millions of users.
+    </p>
+    <div class="job-tech">
+      <span class="tech-tag">Ruby on Rails</span>
+      <span class="tech-tag">JavaScript</span>
+      <span class="tech-tag">React</span>
+      <span class="tech-tag">C++</span>
+      <span class="tech-tag">Erlang</span>
+      <span class="tech-tag">PostgreSQL</span>
+      <span class="tech-tag">Mysql</span>
+      <span class="tech-tag">Jenkins</span>
+      <span class="tech-tag">Kubernetes</span>
+      <span class="tech-tag">Ansible</span>
+      <span class="tech-tag">Terraform</span>
+      <span class="tech-tag">AWS</span>
+    </div>
+  </div>
+
+  <div class="job-entry">
+    <div class="job-title">Validation Intern</div>
+    <div class="job-company">Virtual Hold Technology</div>
+    <div class="job-period">📅 2014 - 2015</div>
+    <p class="job-description">
+      Manually tested new features and bug fixes in a SaaS callback platform, ensuring quality across the galaxy of code.
+      Developed automated test scripts using Rspec and Cucumber to improve testing efficiency and coverage.
+    </p>
+    <div class="job-tech">
+      <span class="tech-tag">Rspec</span>
+      <span class="tech-tag">Cucumber</span>
+      <span class="tech-tag">Telephone</span>
+    </div>
+  </div>
+</div>
+
+<div class="resume-section">
+  <h2 class="section-title">🎓 Academy Training</h2>
+
+  <div class="job-entry">
+    <div class="job-title">Bachelor of Science in Computer Science</div>
+    <div class="job-company">Kent State University</div>
+    <div class="job-period">📅 2011 - 2015</div>
+    <p class="job-description">
+      Focused on software engineering, algorithms, and data structures navigating the academic cosmos.
+    </p>
+  </div>
+</div>
+
+<div class="resume-section">
+  <h2 class="section-title">⚡ Skills & Expertise</h2>
+
+  <div style="margin-top: 20px;">
+    <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Backend</h3>
+    <div class="job-tech">
+      <span class="tech-tag">Ruby</span>
+      <span class="tech-tag">Ruby on Rails</span>
+      <span class="tech-tag">PostgreSQL</span>
+      <span class="tech-tag">Mysql</span>
+      <span class="tech-tag">Redis</span>
+      <span class="tech-tag">REST APIs</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 25px;">
+    <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Frontend</h3>
+    <div class="job-tech">
+      <span class="tech-tag">React</span>
+      <span class="tech-tag">JavaScript</span>
+      <span class="tech-tag">TypeScript</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 25px;">
+    <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">DevOps & Tools</h3>
+    <div class="job-tech">
+      <span class="tech-tag">Docker</span>
+      <span class="tech-tag">AWS</span>
+      <span class="tech-tag">CI/CD</span>
+      <span class="tech-tag">GitHub Actions</span>
+      <span class="tech-tag">Jenkins</span>
+      <span class="tech-tag">Ansible</span>
+      <span class="tech-tag">Kubernetes</span>
+      <span class="tech-tag">Shell</span>
+      <span class="tech-tag">Git</span>
+    </div>
+  </div>
+</div>
+
+      </main>
+    </div>
+
+    <div class="status-bar">
+      <div class="status-indicators">
+        <span><span class="led-indicator led-power"></span> MISSION.ACTIVE</span>
+        <span><span class="led-indicator led-activity"></span> MISSION DURATION: <span id="mission-duration">calculating...</span></span>
+        <span><span class="led-indicator led-storage"></span> <span id="current-time">00:00:00</span> UTC</span>
+      </div>
+      <div>
+        STARSHIP © 2014 MARCO.ADKINS
+      </div>
+    </div>
+
+    <script>
+      // Mission start date: August 1, 2014
+      const MISSION_START = new Date('2014-08-01T00:00:00Z');
+
+      function updateMissionDuration() {
+        const now = new Date();
+        const totalSeconds = Math.floor((now - MISSION_START) / 1000);
+
+        // Calculate years, months, days
+        let years = 0, months = 0, days = 0;
+        let tempDate = new Date(MISSION_START);
+
+        // Calculate years
+        while (tempDate.getTime() + (365.25 * 24 * 60 * 60 * 1000) <= now) {
+          years++;
+          tempDate = new Date(tempDate.getFullYear() + 1, tempDate.getMonth(), tempDate.getDate());
+        }
+
+        // Calculate months
+        while (tempDate.getTime() + (30.44 * 24 * 60 * 60 * 1000) <= now) {
+          months++;
+          tempDate = new Date(tempDate.getFullYear(), tempDate.getMonth() + 1, tempDate.getDate());
+        }
+
+        // Calculate days
+        days = Math.floor((now - tempDate) / (24 * 60 * 60 * 1000));
+
+        document.getElementById('mission-duration').textContent = `${years}y ${months}m ${days}d`;
+      }
+
+      function updateCurrentTime() {
+        const now = new Date();
+        const hours = String(now.getUTCHours()).padStart(2, '0');
+        const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+
+        document.getElementById('current-time').textContent = `${hours}:${minutes}:${seconds}`;
+      }
+
+      // Update on page load
+      updateMissionDuration();
+      updateCurrentTime();
+
+      // Update every second
+      setInterval(() => {
+        updateMissionDuration();
+        updateCurrentTime();
+      }, 1000);
+    </script>
+  </body>
+</html>
