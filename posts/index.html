@@ -177,26 +177,6 @@
         50% { opacity: 0.5; }
       }
 
-      @keyframes pulse-station {
-        0%, 100% { box-shadow:
-          0 0 15px var(--nebula-purple),
-          calc(100% - 10px) 0 0 0 var(--star-white),
-          0 calc(100% - 10px) 0 0 var(--star-white),
-          calc(100% - 10px) calc(100% - 10px) 0 0 var(--star-white),
-          calc(100% - 10px) 0 0 15px var(--nebula-blue),
-          0 calc(100% - 10px) 0 15px var(--nebula-pink),
-          calc(100% - 10px) calc(100% - 10px) 0 15px var(--nebula-cyan);
-        }
-        50% { box-shadow:
-          0 0 25px var(--nebula-purple),
-          calc(100% - 10px) 0 0 0 var(--star-white),
-          0 calc(100% - 10px) 0 0 var(--star-white),
-          calc(100% - 10px) calc(100% - 10px) 0 0 var(--star-white),
-          calc(100% - 10px) 0 0 25px var(--nebula-blue),
-          0 calc(100% - 10px) 0 25px var(--nebula-pink),
-          calc(100% - 10px) calc(100% - 10px) 0 25px var(--nebula-cyan);
-        }
-      }
 
       .site-title {
         font-family: 'Orbitron', sans-serif;
@@ -290,10 +270,6 @@
         opacity: 1;
       }
 
-      .nav-button:hover::after {
-        opacity: 1;
-        right: 8px;
-      }
 
       /* Content area - Space Station Viewport */
       .content-socket {
@@ -319,40 +295,6 @@
         border-radius: 20px;
       }
 
-      /* Constellation markers */
-      .screw {
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--star-white);
-        box-shadow: 0 0 15px var(--nebula-purple);
-        animation: twinkle-marker 4s ease-in-out infinite;
-      }
-
-      @keyframes twinkle-marker {
-        0%, 100% {
-          opacity: 1;
-          box-shadow: 0 0 15px var(--nebula-purple);
-        }
-        25% {
-          opacity: 0.6;
-          box-shadow: 0 0 20px var(--nebula-blue);
-        }
-        50% {
-          opacity: 1;
-          box-shadow: 0 0 15px var(--nebula-pink);
-        }
-        75% {
-          opacity: 0.7;
-          box-shadow: 0 0 18px var(--nebula-cyan);
-        }
-      }
-
-      .screw-tl { top: 20px; left: 20px; }
-      .screw-tr { top: 20px; right: 20px; animation-delay: 1s; }
-      .screw-bl { bottom: 20px; left: 20px; animation-delay: 2s; }
-      .screw-br { bottom: 20px; right: 20px; animation-delay: 3s; }
 
       /* System indicators - Nebula themed */
       .led-indicator {
@@ -493,29 +435,87 @@
         100% { left: 100%; }
       }
 
+      /* Code copy button */
+      .code-copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(157, 78, 221, 0.8);
+        color: var(--star-white);
+        border: 1px solid var(--nebula-purple);
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+        z-index: 10;
+      }
+
+      .code-copy-btn:hover {
+        background: rgba(157, 78, 221, 1);
+        box-shadow: 0 4px 12px rgba(157, 78, 221, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .code-copy-btn.copied {
+        background: rgba(6, 255, 165, 0.8);
+        border-color: var(--nebula-cyan);
+      }
+
+      .code-copy-btn.error {
+        background: rgba(255, 77, 109, 0.8);
+        border-color: var(--nebula-pink);
+      }
+
+      .copy-icon {
+        font-size: 0.95rem;
+      }
+
+      .copy-text {
+        font-weight: 600;
+      }
+
       /* Responsive */
-      @keyframes responsive {
+      @media (max-width: 900px) {
+        .main-container {
+          padding: 28px 20px 120px;
+        }
+
         .site-title {
-          font-size: 2.25rem;
+          font-size: 2.5rem;
           letter-spacing: 6px;
+        }
+
+        .site-subtitle {
+          letter-spacing: 3px;
         }
 
         .nav-panel {
           flex-direction: column;
         }
 
+        .nav-button {
+          width: 100%;
+          text-align: center;
+        }
+
         .content-socket {
-          padding: 24px;
+          padding: 32px;
         }
 
         .header-panel {
-          padding: 32px 24px;
+          padding: 36px 28px;
         }
 
         .status-bar {
           flex-direction: column;
           gap: 8px;
-          padding: 12px;
+          padding: 12px 16px;
         }
 
         .status-indicators {
@@ -524,16 +524,90 @@
           justify-content: center;
         }
       }
+
+      @media (max-width: 600px) {
+        .main-container {
+          padding: 20px 16px 140px;
+        }
+
+        .site-title {
+          font-size: 2rem;
+          letter-spacing: 4px;
+          text-align: center;
+          line-height: 1.1;
+          word-break: break-word;
+        }
+
+        .site-subtitle {
+          font-size: 1rem;
+          letter-spacing: 2px;
+          text-align: center;
+        }
+
+        .nav-panel {
+          gap: 10px;
+        }
+
+        .nav-button {
+          padding: 12px 18px;
+          font-size: 0.9rem;
+        }
+
+        .content-socket {
+          padding: 24px;
+        }
+
+        .header-panel {
+          padding: 28px 20px;
+        }
+
+        .status-bar {
+          position: static;
+          text-align: center;
+        }
+
+        h1 {
+          font-size: 1.6rem;
+        }
+
+        h2 {
+          font-size: 1.35rem;
+        }
+
+        h3 {
+          font-size: 1.15rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .site-title {
+          font-size: 1.4rem;
+          letter-spacing: 2px;
+        }
+
+        .site-subtitle {
+          font-size: 0.95rem;
+          letter-spacing: 1.5px;
+        }
+
+        h1 {
+          font-size: 1.4rem;
+        }
+
+        h2 {
+          font-size: 1.2rem;
+        }
+
+        h3 {
+          font-size: 1.05rem;
+        }
+      }
     </style>
   </head>
 
   <body>
     <div class="main-container">
       <header class="header-panel">
-        <div class="screw screw-tl"></div>
-        <div class="screw screw-tr"></div>
-        <div class="screw screw-bl"></div>
-        <div class="screw screw-br"></div>
         <h1 class="site-title">MARCO.ADKINS</h1>
         <p class="site-subtitle">Software Engineer</p>
       </header>
@@ -549,10 +623,6 @@
 
 
       <main class="content-socket">
-        <div class="screw screw-tl"></div>
-        <div class="screw screw-tr"></div>
-        <div class="screw screw-bl"></div>
-        <div class="screw screw-br"></div>
 
         <style>
   .blog-header {
@@ -590,6 +660,22 @@
     margin-bottom: 16px;
     letter-spacing: 8px;
     filter: drop-shadow(0 0 30px rgba(157, 78, 221, 0.5));
+  }
+
+  @media (max-width: 900px) {
+    .blog-title {
+      font-size: 2.2rem;
+      letter-spacing: 4px;
+      line-height: 1.1;
+      word-break: break-word;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .blog-title {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
   }
 
   .blog-subtitle {
@@ -722,50 +808,6 @@
     background: none;
     padding: 0;
     color: inherit;
-  }
-
-  .code-copy-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(157, 78, 221, 0.8);
-    color: var(--star-white);
-    border: 1px solid var(--nebula-purple);
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
-
-  .code-copy-btn:hover {
-    background: rgba(157, 78, 221, 1);
-    box-shadow: 0 4px 12px rgba(157, 78, 221, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .code-copy-btn.copied {
-    background: rgba(6, 255, 165, 0.8);
-    border-color: var(--nebula-cyan);
-  }
-
-  .code-copy-btn.error {
-    background: rgba(255, 77, 109, 0.8);
-    border-color: var(--nebula-pink);
-  }
-
-  .copy-icon {
-    font-size: 0.95rem;
-  }
-
-  .copy-text {
-    font-weight: 600;
   }
 
   .post-actions {
