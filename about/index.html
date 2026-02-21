@@ -143,6 +143,48 @@
         padding: 32px 24px 100px;
       }
 
+      /* =============================================
+         SHARED BASE CLASSES
+         ============================================= */
+
+      /* Gradient title base — Orbitron, gradient clip text, drop-shadow */
+      .page-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.6rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--star-white) 0%, var(--nebula-purple) 50%, var(--nebula-blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));
+      }
+
+      /* Section/sub-title base — Orbitron, solid primary color */
+      .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* Sub-section title — mirrors section-title at ~75% font-size */
+      .sub-section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* Panel/card header base — dark glass background, border, shadow */
+      .panel-card {
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(20, 20, 31, 0.8) 100%);
+        border: 1px solid var(--border-normal);
+        border-radius: 16px;
+        position: relative;
+        box-shadow: var(--shadow-deep), var(--shadow-nebula);
+        backdrop-filter: blur(20px);
+      }
+
       /* Header - Space Station Command Center */
       .header-panel {
         background: linear-gradient(135deg, rgba(20, 20, 31, 0.8) 0%, rgba(26, 26, 46, 0.9) 100%);
@@ -150,7 +192,6 @@
         border-radius: 16px;
         padding: 48px 40px;
         margin-bottom: 40px;
-        box-shadow: var(--shadow-deep), var(--shadow-nebula);
         position: relative;
         overflow: hidden;
         backdrop-filter: blur(20px);
@@ -480,10 +521,42 @@
         font-weight: 600;
       }
 
+      /* Tech tag pill */
+      .tech-tag {
+        background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(58, 134, 255, 0.1));
+        border: 1px solid var(--border-subtle);
+        border-radius: 8px;
+        padding: 8px 15px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.9rem;
+        color: var(--nebula-cyan);
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .tech-tag:hover {
+        background: linear-gradient(135deg, rgba(157, 78, 221, 0.25), rgba(58, 134, 255, 0.2));
+        border-color: var(--nebula-purple);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+      }
+
       /* Responsive */
       @media (max-width: 900px) {
         .main-container {
           padding: 28px 20px 120px;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 1.35rem;
+        }
+
+        .sub-section-title {
+          font-size: 1rem;
         }
 
         .site-title {
@@ -530,6 +603,18 @@
           padding: 20px 16px 140px;
         }
 
+        .page-title {
+          font-size: 1.6rem;
+        }
+
+        .section-title {
+          font-size: 1.7rem;
+        }
+
+        .sub-section-title {
+          font-size: 1.25rem;
+        }
+
         .site-title {
           font-size: 2rem;
           letter-spacing: 4px;
@@ -566,6 +651,10 @@
           text-align: center;
         }
 
+        .code-copy-btn {
+          display: none;
+        }
+
         h1 {
           font-size: 1.6rem;
         }
@@ -580,6 +669,18 @@
       }
 
       @media (max-width: 480px) {
+        .page-title {
+          font-size: 1.35rem;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .sub-section-title {
+          font-size: 0.85rem;
+        }
+
         .site-title {
           font-size: 1.4rem;
           letter-spacing: 2px;
@@ -607,8 +708,8 @@
 
   <body>
     <div class="main-container">
-      <header class="header-panel">
-        <h1 class="site-title">MARCO.ADKINS</h1>
+      <header class="header-panel header-base">
+        <h1 class="site-title title-base title-gradient">MARCO.ADKINS</h1>
         <p class="site-subtitle">Software Engineer</p>
       </header>
 
@@ -654,15 +755,7 @@
   }
 
   .about-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--star-white) 0%, var(--nebula-purple) 50%, var(--nebula-blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin-bottom: 28px;
-    filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));
   }
 
   .about-text {
@@ -679,50 +772,20 @@
     margin-top: 28px;
   }
 
-  .skill-chip {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.12), rgba(58, 134, 255, 0.08));
-    border: 1px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 14px;
-    text-align: center;
-    font-family: 'Rajdhani', sans-serif;
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-    overflow: hidden;
+  .about-contact {
+    margin-top: 20px;
   }
 
-  .skill-chip::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s ease;
+  .about-title--sm {
+    font-size: 2rem;
   }
 
-  .skill-chip:hover::before {
-    left: 100%;
-  }
-
-  .skill-chip:hover {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(58, 134, 255, 0.15));
-    border-color: var(--nebula-purple);
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.4), var(--glow-purple);
-    color: var(--star-white);
-  }
 </style>
 
 <div class="about-container">
   <div class="subpanel-card">
     <div class="subpanel-label">🧑🏼‍🚀 PILOT_PROFILE</div>
-    <h1 class="about-title">About Marco Adkins</h1>
+    <h1 class="about-title page-title">About Marco Adkins</h1>
 
     <p class="about-text">
       I'm a full-stack developer navigating the infinite cosmos of code with a passion for building scalable,
@@ -744,49 +807,49 @@
 
   <div class="subpanel-card">
     <div class="subpanel-label">🚀 RECREATIONAL_INTERESTS</div>
-    <h2 class="about-title" style="font-size: 2rem;">Core Hobbies</h2>
+    <h2 class="about-title about-title--sm section-title">Core Hobbies</h2>
 
     <div class="skills-grid">
-      <div class="skill-chip">Pickleball</div>
-      <div class="skill-chip">Volleyball</div>
-      <div class="skill-chip">Basketball</div>
-      <div class="skill-chip">Camping</div>
-      <div class="skill-chip">RVing</div>
-      <div class="skill-chip">Hiking</div>
-      <div class="skill-chip">Traveling</div>
-      <div class="skill-chip">Gaming</div>
+      <div class="tech-tag">Pickleball</div>
+      <div class="tech-tag">Volleyball</div>
+      <div class="tech-tag">Basketball</div>
+      <div class="tech-tag">Camping</div>
+      <div class="tech-tag">RVing</div>
+      <div class="tech-tag">Hiking</div>
+      <div class="tech-tag">Traveling</div>
+      <div class="tech-tag">Gaming</div>
     </div>
   </div>
 
   <div class="subpanel-card">
     <div class="subpanel-label">⚡ TECHNICAL_EXPERTISE</div>
-    <h2 class="about-title" style="font-size: 2rem;">Core Technologies</h2>
+    <h2 class="about-title about-title--sm section-title">Core Technologies</h2>
 
     <div class="skills-grid">
-      <div class="skill-chip">Ruby</div>
-      <div class="skill-chip">Rails</div>
-      <div class="skill-chip">PostgreSQL</div>
-      <div class="skill-chip">Docker</div>
-      <div class="skill-chip">JavaScript / TypeScript</div>
-      <div class="skill-chip">React</div>
-      <div class="skill-chip">HTML</div>
-      <div class="skill-chip">AWS</div>
-      <div class="skill-chip">APM</div>
-      <div class="skill-chip">TDD</div>
-      <div class="skill-chip">Shell</div>
-      <div class="skill-chip">CI/CD</div>
+      <div class="tech-tag">Ruby</div>
+      <div class="tech-tag">Rails</div>
+      <div class="tech-tag">PostgreSQL</div>
+      <div class="tech-tag">Docker</div>
+      <div class="tech-tag">JavaScript</div>
+      <div class="tech-tag">React</div>
+      <div class="tech-tag">HTML</div>
+      <div class="tech-tag">AWS</div>
+      <div class="tech-tag">APM</div>
+      <div class="tech-tag">TDD</div>
+      <div class="tech-tag">Shell</div>
+      <div class="tech-tag">CI/CD</div>
     </div>
   </div>
 
   <div class="subpanel-card">
     <div class="subpanel-label">📡 CONTACT_CHANNEL</div>
-    <h2 class="about-title" style="font-size: 2rem;">Open Communication Channel</h2>
+    <h2 class="about-title about-title--sm section-title">Open Communication Channel</h2>
 
     <p class="about-text">
       Interested in collaborating on a mission or have a project in mind? Feel free to send a transmission!
     </p>
 
-    <div style="margin-top: 20px;">
+    <div class="about-contact">
       <p class="about-text">
         📧 Email: <a href="mailto:marcoadkins88@gmail.com">marcoadkins88@gmail.com</a> <br>
         🐙 GitHub: <a href="https://www.github.com/marcoadkins" target="_blank">github.com/marcoadkins</a>

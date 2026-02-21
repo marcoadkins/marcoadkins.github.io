@@ -143,6 +143,48 @@
         padding: 32px 24px 100px;
       }
 
+      /* =============================================
+         SHARED BASE CLASSES
+         ============================================= */
+
+      /* Gradient title base — Orbitron, gradient clip text, drop-shadow */
+      .page-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.6rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--star-white) 0%, var(--nebula-purple) 50%, var(--nebula-blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));
+      }
+
+      /* Section/sub-title base — Orbitron, solid primary color */
+      .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* Sub-section title — mirrors section-title at ~75% font-size */
+      .sub-section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* Panel/card header base — dark glass background, border, shadow */
+      .panel-card {
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(20, 20, 31, 0.8) 100%);
+        border: 1px solid var(--border-normal);
+        border-radius: 16px;
+        position: relative;
+        box-shadow: var(--shadow-deep), var(--shadow-nebula);
+        backdrop-filter: blur(20px);
+      }
+
       /* Header - Space Station Command Center */
       .header-panel {
         background: linear-gradient(135deg, rgba(20, 20, 31, 0.8) 0%, rgba(26, 26, 46, 0.9) 100%);
@@ -150,7 +192,6 @@
         border-radius: 16px;
         padding: 48px 40px;
         margin-bottom: 40px;
-        box-shadow: var(--shadow-deep), var(--shadow-nebula);
         position: relative;
         overflow: hidden;
         backdrop-filter: blur(20px);
@@ -480,10 +521,42 @@
         font-weight: 600;
       }
 
+      /* Tech tag pill */
+      .tech-tag {
+        background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(58, 134, 255, 0.1));
+        border: 1px solid var(--border-subtle);
+        border-radius: 8px;
+        padding: 8px 15px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.9rem;
+        color: var(--nebula-cyan);
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .tech-tag:hover {
+        background: linear-gradient(135deg, rgba(157, 78, 221, 0.25), rgba(58, 134, 255, 0.2));
+        border-color: var(--nebula-purple);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+      }
+
       /* Responsive */
       @media (max-width: 900px) {
         .main-container {
           padding: 28px 20px 120px;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 1.35rem;
+        }
+
+        .sub-section-title {
+          font-size: 1rem;
         }
 
         .site-title {
@@ -530,6 +603,18 @@
           padding: 20px 16px 140px;
         }
 
+        .page-title {
+          font-size: 1.6rem;
+        }
+
+        .section-title {
+          font-size: 1.7rem;
+        }
+
+        .sub-section-title {
+          font-size: 1.25rem;
+        }
+
         .site-title {
           font-size: 2rem;
           letter-spacing: 4px;
@@ -566,6 +651,10 @@
           text-align: center;
         }
 
+        .code-copy-btn {
+          display: none;
+        }
+
         h1 {
           font-size: 1.6rem;
         }
@@ -580,6 +669,18 @@
       }
 
       @media (max-width: 480px) {
+        .page-title {
+          font-size: 1.35rem;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .sub-section-title {
+          font-size: 0.85rem;
+        }
+
         .site-title {
           font-size: 1.4rem;
           letter-spacing: 2px;
@@ -607,8 +708,8 @@
 
   <body>
     <div class="main-container">
-      <header class="header-panel">
-        <h1 class="site-title">MARCO.ADKINS</h1>
+      <header class="header-panel header-base">
+        <h1 class="site-title title-base title-gradient">MARCO.ADKINS</h1>
         <p class="site-subtitle">Software Engineer</p>
       </header>
 
@@ -658,22 +759,10 @@
   }
 
   .company-name {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--star-white) 0%, var(--nebula-purple) 50%, var(--nebula-blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin-bottom: 16px;
-    filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));
   }
 
   .role-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--text-secondary);
     margin-bottom: 28px;
     letter-spacing: 1px;
   }
@@ -737,10 +826,6 @@
   }
 
   .project-name {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
     margin-bottom: 12px;
   }
 
@@ -748,15 +833,70 @@
     color: var(--text-secondary);
     line-height: 1.6;
   }
+
+  .workplace-intro {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+
+  .workplace-section-title {
+    margin-bottom: 25px;
+  }
+
+  .tech-category-title {
+    color: var(--nebula-cyan);
+    margin-bottom: 15px;
+  }
+
+  .tech-category-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .workplace-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .workplace-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--star-white);
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .workplace-link--company {
+    background: linear-gradient(135deg, var(--nebula-purple) 0%, var(--nebula-blue) 100%);
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+  }
+
+  .workplace-link--careers {
+    background: linear-gradient(135deg, var(--nebula-blue) 0%, var(--nebula-cyan) 100%);
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+  }
+
+  .workplace-link--core {
+    background: linear-gradient(135deg, var(--nebula-pink) 0%, var(--planet-orange) 100%);
+    box-shadow: 0 4px 15px rgba(255, 0, 110, 0.3);
+  }
 </style>
 
 <div class="workplace-card">
   <div class="status-badge">🚀 ACTIVE MISSION</div>
 
-  <h1 class="company-name">Eezy LLC</h1>
-  <div class="role-title">Senior Engineer</div>
+  <h1 class="company-name page-title">Eezy LLC</h1>
+  <div class="role-title sub-section-title">Senior Engineer</div>
 
-  <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
+  <p class="workplace-intro">
     Currently working on cutting-edge web applications that serve millions of creatives across the cosmos.
     Our team focuses on building scalable, performant systems using modern technologies and best practices.
   </p>
@@ -785,20 +925,20 @@
 </div>
 
 <div class="workplace-card">
-  <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--text-primary); margin-bottom: 25px;">
+  <h2 class="workplace-section-title section-title">
     🛸 Active Missions
   </h2>
 
   <div class="project-list">
     <div class="project-item">
-      <div class="project-name">Platform Modernization</div>
+      <div class="project-name sub-section-title">Platform Modernization</div>
       <p class="project-desc">
         Leading the migration of dated core dependencies to improve performance, security, and maintainability across our flagship product.
       </p>
     </div>
 
     <div class="project-item">
-      <div class="project-name">File Management</div>
+      <div class="project-name sub-section-title">File Management</div>
       <p class="project-desc">
         Managing the storage and processing of over 60 million resource files across the star system.
         Including parallelized processing pipelines, optimized storage solutions, and robust data integrity measures.
@@ -806,7 +946,7 @@
     </div>
 
     <div class="project-item">
-      <div class="project-name">API Gateway</div>
+      <div class="project-name sub-section-title">API Gateway</div>
       <p class="project-desc">
         Architecting, deploying, and supporting a next‑generation API gateway for interstellar networks — engineered for low‑latency,
         high‑throughput operation with adaptive rate limiting and hardened end‑to‑end security.
@@ -816,35 +956,35 @@
 </div>
 
 <div class="workplace-card">
-  <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--text-primary); margin-bottom: 25px;">
+  <h2 class="workplace-section-title section-title">
     ⚡ Tech Constellation
   </h2>
 
   <div class="info-grid">
     <div>
-      <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Backend</h3>
-      <p style="color: var(--text-secondary); line-height: 1.8;">
+      <h3 class="tech-category-title sub-section-title">Backend</h3>
+      <p class="tech-category-text">
         Ruby on Rails, PostgreSQL, Redis, Elasticsearch, Mysql, REST APIs
       </p>
     </div>
 
     <div>
-      <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Frontend</h3>
-      <p style="color: var(--text-secondary); line-height: 1.8;">
+      <h3 class="tech-category-title sub-section-title">Frontend</h3>
+      <p class="tech-category-text">
         JavaScript, React, TypeScript, Tailwind CSS, Vite, View Components
       </p>
     </div>
 
     <div>
-      <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Infrastructure</h3>
-      <p style="color: var(--text-secondary); line-height: 1.8;">
+      <h3 class="tech-category-title sub-section-title">Infrastructure</h3>
+      <p class="tech-category-text">
         AWS (ECS, Lambda, RDS), Docker, Terraform, GitHub Actions
       </p>
     </div>
 
     <div>
-      <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Tools</h3>
-      <p style="color: var(--text-secondary); line-height: 1.8;">
+      <h3 class="tech-category-title sub-section-title">Tools</h3>
+      <p class="tech-category-text">
         GitHub, Jira, BetterStack, Sentry, Figma, Grafana, New Relic
       </p>
     </div>
@@ -852,18 +992,18 @@
 </div>
 
 <div class="workplace-card">
-  <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--text-primary); margin-bottom: 25px;">
+  <h2 class="workplace-section-title sub-section-title">
     📡 Communication Channels
   </h2>
 
-  <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-    <a href="https://www.eezy.com" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--nebula-purple) 0%, var(--nebula-blue) 100%); color: var(--star-white); padding: 12px 24px; border-radius: 10px; text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);">
+  <div class="workplace-links">
+    <a href="https://www.eezy.com" target="_blank" class="workplace-link workplace-link--company">
       🌐 Company Website
     </a>
-    <a href="https://www.eezy.com/careers/" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--nebula-blue) 0%, var(--nebula-cyan) 100%); color: var(--star-white); padding: 12px 24px; border-radius: 10px; text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);">
+    <a href="https://www.eezy.com/careers/" target="_blank" class="workplace-link workplace-link--careers">
       💼 Careers
     </a>
-    <a href="https://www.vecteezy.com" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--nebula-pink) 0%, var(--planet-orange) 100%); color: var(--star-white); padding: 12px 24px; border-radius: 10px; text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 0, 110, 0.3);">
+    <a href="https://www.vecteezy.com" target="_blank" class="workplace-link workplace-link--core">
       📷 Core Application Site
     </a>
   </div>

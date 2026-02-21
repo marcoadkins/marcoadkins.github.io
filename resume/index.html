@@ -143,6 +143,48 @@
         padding: 32px 24px 100px;
       }
 
+      /* =============================================
+         SHARED BASE CLASSES
+         ============================================= */
+
+      /* Gradient title base — Orbitron, gradient clip text, drop-shadow */
+      .page-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.6rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--star-white) 0%, var(--nebula-purple) 50%, var(--nebula-blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));
+      }
+
+      /* Section/sub-title base — Orbitron, solid primary color */
+      .section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* Sub-section title — mirrors section-title at ~75% font-size */
+      .sub-section-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* Panel/card header base — dark glass background, border, shadow */
+      .panel-card {
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(20, 20, 31, 0.8) 100%);
+        border: 1px solid var(--border-normal);
+        border-radius: 16px;
+        position: relative;
+        box-shadow: var(--shadow-deep), var(--shadow-nebula);
+        backdrop-filter: blur(20px);
+      }
+
       /* Header - Space Station Command Center */
       .header-panel {
         background: linear-gradient(135deg, rgba(20, 20, 31, 0.8) 0%, rgba(26, 26, 46, 0.9) 100%);
@@ -150,7 +192,6 @@
         border-radius: 16px;
         padding: 48px 40px;
         margin-bottom: 40px;
-        box-shadow: var(--shadow-deep), var(--shadow-nebula);
         position: relative;
         overflow: hidden;
         backdrop-filter: blur(20px);
@@ -480,10 +521,42 @@
         font-weight: 600;
       }
 
+      /* Tech tag pill */
+      .tech-tag {
+        background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(58, 134, 255, 0.1));
+        border: 1px solid var(--border-subtle);
+        border-radius: 8px;
+        padding: 8px 15px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 0.9rem;
+        color: var(--nebula-cyan);
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .tech-tag:hover {
+        background: linear-gradient(135deg, rgba(157, 78, 221, 0.25), rgba(58, 134, 255, 0.2));
+        border-color: var(--nebula-purple);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+      }
+
       /* Responsive */
       @media (max-width: 900px) {
         .main-container {
           padding: 28px 20px 120px;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 1.35rem;
+        }
+
+        .sub-section-title {
+          font-size: 1rem;
         }
 
         .site-title {
@@ -530,6 +603,18 @@
           padding: 20px 16px 140px;
         }
 
+        .page-title {
+          font-size: 1.6rem;
+        }
+
+        .section-title {
+          font-size: 1.7rem;
+        }
+
+        .sub-section-title {
+          font-size: 1.25rem;
+        }
+
         .site-title {
           font-size: 2rem;
           letter-spacing: 4px;
@@ -566,6 +651,10 @@
           text-align: center;
         }
 
+        .code-copy-btn {
+          display: none;
+        }
+
         h1 {
           font-size: 1.6rem;
         }
@@ -580,6 +669,18 @@
       }
 
       @media (max-width: 480px) {
+        .page-title {
+          font-size: 1.35rem;
+        }
+
+        .section-title {
+          font-size: 1.1rem;
+        }
+
+        .sub-section-title {
+          font-size: 0.85rem;
+        }
+
         .site-title {
           font-size: 1.4rem;
           letter-spacing: 2px;
@@ -607,8 +708,8 @@
 
   <body>
     <div class="main-container">
-      <header class="header-panel">
-        <h1 class="site-title">MARCO.ADKINS</h1>
+      <header class="header-panel header-base">
+        <h1 class="site-title title-base title-gradient">MARCO.ADKINS</h1>
         <p class="site-subtitle">Software Engineer</p>
       </header>
 
@@ -626,14 +727,9 @@
 
         <style>
   .resume-section {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(20, 20, 31, 0.8) 100%);
-    border: 1px solid var(--border-normal);
-    border-radius: 16px;
     padding: 36px;
     margin-bottom: 32px;
-    position: relative;
-    box-shadow: var(--shadow-deep), var(--shadow-cosmic);
-    backdrop-filter: blur(20px);
+    overflow: hidden;
   }
 
   .resume-section::before {
@@ -647,13 +743,23 @@
     border-radius: 16px 0 0 16px;
   }
 
-  .section-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.85rem;
-    font-weight: 900;
-    color: var(--text-primary);
+  .resume-intro {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .resume-section-title {
     margin-bottom: 28px;
     letter-spacing: 1px;
+  }
+
+  .skill-group {
+    margin-top: 20px;
+  }
+
+  .skill-group + .skill-group {
+    margin-top: 25px;
   }
 
   .job-entry {
@@ -668,10 +774,6 @@
   }
 
   .job-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-primary);
     margin-bottom: 10px;
   }
 
@@ -703,24 +805,6 @@
     margin-top: 16px;
   }
 
-  .tech-tag {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(58, 134, 255, 0.1));
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--nebula-cyan);
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-
-  .tech-tag:hover {
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.25), rgba(58, 134, 255, 0.2));
-    border-color: var(--nebula-purple);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
-  }
 
   .download-btn {
     display: inline-flex;
@@ -744,21 +828,35 @@
     box-shadow: 0 6px 25px rgba(157, 78, 221, 0.5), var(--glow-purple);
     transform: translateY(-3px);
   }
+
+  @media (max-width: 600px) {
+    .download-btn {
+      font-size: 0.9rem;
+      padding: 12px 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .download-btn {
+      font-size: 0.8rem;
+      padding: 10px 20px;
+    }
+  }
 </style>
 
-<div class="resume-section">
-  <h1 class="section-title">🚀 Mission Log</h1>
-  <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 20px;">
+<div class="resume-section panel-card">
+  <h1 class="resume-section-title section-title">🚀 Mission Log</h1>
+  <p class="resume-intro">
     Full-stack developer with 11+ years navigating the cosmos of modern web applications and backend systems.
   </p>
   <a href="/resume.pdf" class="download-btn" download="marco-adkins.pdf">⬇ DOWNLOAD MISSION LOG</a>
 </div>
 
-<div class="resume-section">
-  <h2 class="section-title">🌟 Exploration History</h2>
+<div class="resume-section panel-card">
+  <h2 class="resume-section-title section-title">🌟 Exploration History</h2>
 
   <div class="job-entry">
-    <div class="job-title">Senior Software Developer</div>
+    <div class="job-title sub-section-title">Senior Software Developer</div>
     <div class="job-company">Eezy LLC</div>
     <div class="job-period">📅 2020 - Present</div>
     <p class="job-description">
@@ -781,7 +879,7 @@
   </div>
 
   <div class="job-entry">
-    <div class="job-title">Software Developer</div>
+    <div class="job-title sub-section-title">Software Developer</div>
     <div class="job-company">Virtual Hold Technology</div>
     <div class="job-period">📅 2015 - 2020</div>
     <p class="job-description">
@@ -807,7 +905,7 @@
   </div>
 
   <div class="job-entry">
-    <div class="job-title">Validation Intern</div>
+    <div class="job-title sub-section-title">Validation Intern</div>
     <div class="job-company">Virtual Hold Technology</div>
     <div class="job-period">📅 2014 - 2015</div>
     <p class="job-description">
@@ -822,11 +920,11 @@
   </div>
 </div>
 
-<div class="resume-section">
-  <h2 class="section-title">🎓 Academy Training</h2>
+<div class="resume-section panel-card">
+  <h2 class="resume-section-title section-title">🎓 Academy Training</h2>
 
   <div class="job-entry">
-    <div class="job-title">Bachelor of Science in Computer Science</div>
+    <div class="job-title sub-section-title">Bachelor of Science in Computer Science</div>
     <div class="job-company">Kent State University</div>
     <div class="job-period">📅 2011 - 2015</div>
     <p class="job-description">
@@ -835,11 +933,11 @@
   </div>
 </div>
 
-<div class="resume-section">
-  <h2 class="section-title">⚡ Skills & Expertise</h2>
+<div class="resume-section panel-card">
+  <h2 class="resume-section-title section-title">⚡ Skills & Expertise</h2>
 
-  <div style="margin-top: 20px;">
-    <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Backend</h3>
+  <div class="skill-group">
+    <h3 class="tech-category-title sub-section-title">Backend</h3>
     <div class="job-tech">
       <span class="tech-tag">Ruby</span>
       <span class="tech-tag">Ruby on Rails</span>
@@ -850,8 +948,8 @@
     </div>
   </div>
 
-  <div style="margin-top: 25px;">
-    <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">Frontend</h3>
+  <div class="skill-group">
+    <h3 class="tech-category-title sub-section-title">Frontend</h3>
     <div class="job-tech">
       <span class="tech-tag">React</span>
       <span class="tech-tag">JavaScript</span>
@@ -859,8 +957,8 @@
     </div>
   </div>
 
-  <div style="margin-top: 25px;">
-    <h3 style="color: var(--nebula-cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 15px; font-size: 1.1rem;">DevOps & Tools</h3>
+  <div class="skill-group">
+    <h3 class="tech-category-title sub-section-title">DevOps & Tools</h3>
     <div class="job-tech">
       <span class="tech-tag">Docker</span>
       <span class="tech-tag">AWS</span>
